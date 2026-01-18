@@ -63,8 +63,8 @@ namespace FastScriptReload.Editor.Compilation
             ActiveScriptCompilationDefines = EditorUserBuildSettings.activeScriptCompilationDefines;
             AssemblyCsharpFullPath = SessionStateCache.GetOrCreateString(
 	            $"FSR:AssemblyCsharpFullPath", 
-	            () => AssetDatabase.FindAssets("Microsoft.CSharp")
-					            .Select(g => new System.IO.FileInfo(UnityEngine.Application.dataPath + "/../" + AssetDatabase.GUIDToAssetPath(g)))
+	            () => AssetDatabase.FindAssets("Microsoft.CSharp", new string[] { "Packages", "Assets" })
+                                .Select(g => new System.IO.FileInfo(UnityEngine.Application.dataPath + "/../" + AssetDatabase.GUIDToAssetPath(g)))
 					            .First(fi => fi.Name.ToLower() == "Microsoft.CSharp.dll".ToLower()).FullName
 	        );
             Debug.Log(AssemblyCsharpFullPath);
