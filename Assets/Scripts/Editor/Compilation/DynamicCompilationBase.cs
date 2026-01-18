@@ -67,7 +67,7 @@ namespace FastScriptReload.Editor.Compilation
                                 .Select(g => new System.IO.FileInfo(UnityEngine.Application.dataPath + "/../" + AssetDatabase.GUIDToAssetPath(g)))
 					            .First(fi => fi.Name.ToLower() == "Microsoft.CSharp.dll".ToLower()).FullName
 	        );
-            Debug.Log(AssemblyCsharpFullPath);
+            //Debug.Log(AssemblyCsharpFullPath);
         }
         
         protected static CreateSourceCodeCombinedContentsResult CreateSourceCodeCombinedContents(List<string> sourceCodeFiles, List<string> definedPreprocessorSymbols)
