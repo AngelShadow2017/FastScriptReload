@@ -105,7 +105,7 @@ namespace FastScriptReload.Runtime
 
                                 LoggerScoped.LogDebug($"Trying to detour method, from: '{matchingMethodInExistingType.FullDescription()}' to: '{createdTypeMethodToUpdate.FullDescription()}'");
                                 DetourCrashHandler.LogDetour(matchingMethodInExistingType.ResolveFullName());
-                                PathTools.DetourMethod(matchingMethodInExistingType, createdTypeMethodToUpdate);
+                                PatchTools.DetourMethod(matchingMethodInExistingType, createdTypeMethodToUpdate);
                             }
                             else 
                             {
@@ -205,7 +205,7 @@ namespace FastScriptReload.Runtime
                     var emitMethod = gen.GetType().GetMethod("Emit", new [] { typeof(OpCode) });
                     emitMethod.Invoke(gen, new object[] { OpCodes.Ret }); //simple return to ensure IL is valid
                     
-                    PathTools.DetourMethod(dynamicMethodDynamicallyAdded, onScriptHotReloadFnForCreatedType);
+                    PatchTools.DetourMethod(dynamicMethodDynamicallyAdded, onScriptHotReloadFnForCreatedType);
 
                     ExecuteFnOnMainThread(originalType, dynamicMethodDynamicallyAdded);
                 }
